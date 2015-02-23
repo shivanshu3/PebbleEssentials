@@ -1,0 +1,17 @@
+{
+  "uuid": "54d1e70b-2ec1-48cd-b126-e731f5206467",
+  "shortName": "HelloWorld",
+  "longName": "HelloWorld",
+  "companyName": "Shivanshu Goyal",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": []
+  }
+}

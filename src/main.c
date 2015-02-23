@@ -95,6 +95,7 @@ static void main_window_unload(Window *window) {
 static void init() {
 	// Create main Window element and assign to pointer
 	s_main_window = window_create();
+	window_set_background_color(s_main_window, GColorBlack);
 
 	// Set handlers to manage the elements inside the Window
 	window_set_window_handlers(s_main_window, (WindowHandlers) {

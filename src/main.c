@@ -4,6 +4,7 @@
 static Window *s_main_window;
 static TextLayer *s_time_layer;
 static GFont s_ubuntu_font;
+static GFont s_ubuntu_really_small_font;
 
 //Functions:
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed);
@@ -43,21 +44,27 @@ static void update_time(){
 }
 
 static void main_window_load(Window *window) {
+	// Create GFont
+	s_ubuntu_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_53));
+	s_ubuntu_really_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_13));
+
 	// Create time TextLayer
 	s_time_layer = text_layer_create(GRect(0, -12, 133, 55));
 	text_layer_set_background_color(s_time_layer, GColorBlack);
 	text_layer_set_text_color(s_time_layer, GColorWhite);
 	text_layer_set_text(s_time_layer, "88:88");
-
-	// Create GFont
-	s_ubuntu_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_53));
-
-	// Improve the layout to be more like a watchface
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
-	text_layer_set_text_alignment(s_time_layer, GTextAlignmentLeft);
+
+	//Create the 'M' layer in AM/PM:
+	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 25, 14, 14));
+	text_layer_set_background_color(am_pm_m_layer, GColorBlack);
+	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
+	text_layer_set_text(am_pm_m_layer, "M");
+	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
 
 	// Add it as a child layer to the Window's root layer
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_m_layer));
 }
 
 static void main_window_unload(Window *window) {

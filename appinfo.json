@@ -17,6 +17,11 @@
 				"type" : "font",
 				"name" : "UBUNTU_FONT_53",
 				"file" : "Ubuntu-R.ttf"
+			},
+			{
+				"type" : "font",
+				"name" : "UBUNTU_FONT_13",
+				"file" : "Ubuntu-R.ttf"
 			}
 		]
 	}

@@ -3,6 +3,7 @@
 //Static variables:
 static Window *s_main_window;
 static TextLayer *s_time_layer;
+static TextLayer *am_pm_layer;
 static GFont s_ubuntu_font;
 static GFont s_ubuntu_really_small_font;
 
@@ -39,6 +40,14 @@ static void update_time(){
 		strftime(buffer, sizeof("00:00"), "%I:%M", tick_time);
 	}
 
+	//AM or PM?
+	if(tick_time->tm_hour < 12){//AM
+		text_layer_set_text(am_pm_layer, "A");
+	}
+	else{//PM
+		text_layer_set_text(am_pm_layer, "P");
+	}
+
 	// Display this time on the TextLayer
 	text_layer_set_text(s_time_layer, buffer);
 }
@@ -56,15 +65,23 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
-	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 25, 14, 14));
+	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 22, 14, 14));
 	text_layer_set_background_color(am_pm_m_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
 	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
 
+	//Create the 'A/P' layer in AM/PM:
+	am_pm_layer = text_layer_create(GRect(133, 7, 14, 14));
+	text_layer_set_background_color(am_pm_layer, GColorBlack);
+	text_layer_set_text_color(am_pm_layer, GColorWhite);
+	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
+	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
+
 	// Add it as a child layer to the Window's root layer
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_m_layer));
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_layer));
 }
 
 static void main_window_unload(Window *window) {

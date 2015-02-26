@@ -30,6 +30,7 @@ static void deinit(void);
 //Non static functions:
 void getMonthDateString(int month, int date, char *buffer);
 void getYearString(int year, char *buffer);
+void getDayString(int day, char *buffer);
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	update_time();
@@ -63,10 +64,12 @@ static void update_time(){
 	//Convert month, date, year, and day into strings:
 	getMonthDateString(month, date, monthDateBuffer);
 	getYearString(year, yearBuffer);
+	getDayString(day, dayBuffer);
 
 	//Display these: (These calls should only be made once, but w/e):
 	text_layer_set_text(s_month_date_layer, monthDateBuffer);
 	text_layer_set_text(s_year_layer, yearBuffer);
+	text_layer_set_text(s_day_layer, dayBuffer);
 
 	// Display this time on the TextLayer
 	text_layer_set_text(s_time_layer, buffer);

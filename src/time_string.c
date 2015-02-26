@@ -77,3 +77,39 @@ void getYearString(int year, char *buffer){
 	buffer[3] = fourthDigit + '0';
 	buffer[4] = 0;
 }
+
+/**
+ * Give the day from [0-6] Where 0 is Sunday
+ */
+void getDayString(int day, char *buffer){
+	APP_LOG(APP_LOG_LEVEL_INFO, "%d", day);
+	char *dayString;
+	switch(day){
+		case 0:
+			dayString = "Sunday";
+			break;
+		case 1:
+			dayString = "Monday";
+			break;
+		case 2:
+			dayString = "Tuesday";
+			break;
+		case 3:
+			dayString = "Wednesday";
+			break;
+		case 4:
+			dayString = "Thursday";
+			break;
+		case 5:
+			dayString = "Friday";
+			break;
+		case 6:
+			dayString = "Saturday";
+			break;
+		default:
+			dayString = "Error";
+			break;
+	}
+
+	strcpy(buffer, dayString);
+}

@@ -12,6 +12,12 @@ static TextLayer *s_day_layer;
 static TextLayer *s_year_layer;
 static TextLayer *s_battery_percentage_layer;
 
+//Time buffers:
+static char *monthDateBuffer;
+static char *dayBuffer;
+static char *yearBuffer;
+static char *batteryBuffer;
+
 //Functions:
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed);
 static void update_time(void);
@@ -125,6 +131,12 @@ static void main_window_unload(Window *window) {
 }
 
 static void init() {
+	//Initialize the time buffers:
+	monthDateBuffer = malloc(15);
+	dayBuffer = malloc(12);
+	yearBuffer = malloc(10);
+	batteryBuffer = malloc(15);
+
 	// Create main Window element and assign to pointer
 	s_main_window = window_create();
 	window_set_background_color(s_main_window, GColorBlack);
@@ -146,6 +158,12 @@ static void init() {
 }
 
 static void deinit() {
+	//Free the time buffers:
+	free(monthDateBuffer);
+	free(dayBuffer);
+	free(yearBuffer);
+	free(batteryBuffer);
+
 	window_destroy(s_main_window);
 }
 

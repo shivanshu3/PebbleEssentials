@@ -7,6 +7,7 @@ static TextLayer *am_pm_layer;
 static GFont s_ubuntu_font;
 static GFont s_ubuntu_really_small_font;
 static GFont s_ubuntu_date_font;
+static TextLayer *am_pm_m_layer;
 static TextLayer *s_month_date_layer;
 static TextLayer *s_day_layer;
 static TextLayer *s_year_layer;
@@ -82,7 +83,7 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
-	TextLayer *am_pm_m_layer = text_layer_create(GRect(130, 25, 14, 22));
+	am_pm_m_layer = text_layer_create(GRect(130, 25, 14, 22));
 	text_layer_set_background_color(am_pm_m_layer, GColorClear);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
@@ -134,11 +135,19 @@ static void main_window_load(Window *window) {
 }
 
 static void main_window_unload(Window *window) {
-	// Destroy TextLayer
+	// Destroy TextLayers:
 	text_layer_destroy(s_time_layer);
+	text_layer_destroy(am_pm_layer);
+	text_layer_destroy(s_month_date_layer);
+	text_layer_destroy(s_day_layer);
+	text_layer_destroy(s_year_layer);
+	text_layer_destroy(s_battery_percentage_layer);
+	text_layer_destroy(am_pm_m_layer);
 
-	// Unload GFont
+	// Unload GFonts:
 	fonts_unload_custom_font(s_ubuntu_font);
+	fonts_unload_custom_font(s_ubuntu_really_small_font);
+	fonts_unload_custom_font(s_ubuntu_date_font);
 }
 
 static void init() {

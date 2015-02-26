@@ -89,34 +89,36 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
-	am_pm_m_layer = text_layer_create(GRect(130, 25, 14, 22));
+	am_pm_m_layer = text_layer_create(GRect(128, 25, 14, 22));
 	text_layer_set_background_color(am_pm_m_layer, GColorClear);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
 	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
+	text_layer_set_text_alignment(am_pm_m_layer, GTextAlignmentCenter);
 
 	//Create the 'A/P' layer in AM/PM:
-	am_pm_layer = text_layer_create(GRect(130, 11, 14, 20));
+	am_pm_layer = text_layer_create(GRect(128, 11, 14, 22));
 	text_layer_set_background_color(am_pm_layer, GColorClear);
 	text_layer_set_text_color(am_pm_layer, GColorWhite);
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
 	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
+	text_layer_set_text_alignment(am_pm_layer, GTextAlignmentCenter);
 
-	s_month_date_layer = text_layer_create(GRect(0, 53, 144, 40));
+	s_month_date_layer = text_layer_create(GRect(0, 54, 144, 40));
 	text_layer_set_background_color(s_month_date_layer, GColorClear);
 	text_layer_set_text_color(s_month_date_layer, GColorWhite);
 	text_layer_set_text(s_month_date_layer, "Nomonth 00");
 	text_layer_set_font(s_month_date_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_month_date_layer, GTextAlignmentCenter);
 
-	s_day_layer = text_layer_create(GRect(0, 101, 144, 40));
+	s_day_layer = text_layer_create(GRect(0, 102, 144, 40));
 	text_layer_set_background_color(s_day_layer, GColorClear);
 	text_layer_set_text_color(s_day_layer, GColorWhite);
 	text_layer_set_text(s_day_layer, "Noday");
 	text_layer_set_font(s_day_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_day_layer, GTextAlignmentCenter);
 
-	s_year_layer = text_layer_create(GRect(0, 78, 144, 40));
+	s_year_layer = text_layer_create(GRect(0, 79, 144, 40));
 	text_layer_set_background_color(s_year_layer, GColorClear);
 	text_layer_set_text_color(s_year_layer, GColorWhite);
 	text_layer_set_text(s_year_layer, "8952");

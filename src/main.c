@@ -84,21 +84,21 @@ static void main_window_load(Window *window) {
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
 	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
 
-	s_month_date_layer = text_layer_create(GRect(0, 55, 144, 40));
+	s_month_date_layer = text_layer_create(GRect(0, 53, 144, 40));
 	text_layer_set_background_color(s_month_date_layer, GColorClear);
 	text_layer_set_text_color(s_month_date_layer, GColorWhite);
 	text_layer_set_text(s_month_date_layer, "September 21");
 	text_layer_set_font(s_month_date_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_month_date_layer, GTextAlignmentCenter);
 
-	s_day_layer = text_layer_create(GRect(0, 80, 144, 40));
+	s_day_layer = text_layer_create(GRect(0, 101, 144, 40));
 	text_layer_set_background_color(s_day_layer, GColorClear);
 	text_layer_set_text_color(s_day_layer, GColorWhite);
 	text_layer_set_text(s_day_layer, "Wednesday");
 	text_layer_set_font(s_day_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_day_layer, GTextAlignmentCenter);
 
-	s_year_layer = text_layer_create(GRect(0, 107, 144, 40));
+	s_year_layer = text_layer_create(GRect(0, 78, 144, 40));
 	text_layer_set_background_color(s_year_layer, GColorClear);
 	text_layer_set_text_color(s_year_layer, GColorWhite);
 	text_layer_set_text(s_year_layer, "2015");

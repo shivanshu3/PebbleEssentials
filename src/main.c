@@ -32,13 +32,15 @@ static void deinit(void);
 void getMonthDateString(int month, int date, char *buffer);
 void getYearString(int year, char *buffer);
 void getDayString(int day, char *buffer);
+void getBatteryString(int charge_percent, char *buffer);
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	update_time();
 }
 
 static void battery_handler(BatteryChargeState charge_state){
-	APP_LOG(APP_LOG_LEVEL_INFO, "BATT: %d", charge_state.charge_percent);
+	getBatteryString(charge_state.charge_percent, batteryBuffer);
+	text_layer_set_text(s_battery_percentage_layer, batteryBuffer);
 }
 
 static void update_time(){

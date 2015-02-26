@@ -112,3 +112,22 @@ void getDayString(int day, char *buffer){
 
 	strcpy(buffer, dayString);
 }
+
+/**
+ * Charge percent should be between [10,100]
+ */
+void getBatteryString(int charge_percent, char *buffer){
+	if(charge_percent == 100){
+		buffer[0] = 1 + '0';
+		buffer[1] = 0 + '0';
+		buffer[2] = 0 + '0';
+		buffer[3] = 0;
+		return;
+	}
+
+	int firstDigit = charge_percent/10;
+	int secondDigit = charge_percent - firstDigit*10;
+	buffer[0] = firstDigit + '0';
+	buffer[1] = secondDigit + '0';
+	buffer[2] = 0;
+}

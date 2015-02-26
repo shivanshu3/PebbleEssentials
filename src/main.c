@@ -10,6 +10,7 @@ static GFont s_ubuntu_date_font;
 static TextLayer *s_month_date_layer;
 static TextLayer *s_day_layer;
 static TextLayer *s_year_layer;
+static TextLayer *s_battery_percentage_layer;
 
 //Functions:
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed);
@@ -98,7 +99,15 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_year_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_year_layer, GTextAlignmentCenter);
 
+	s_battery_percentage_layer = text_layer_create(GRect(0, 130, 144, 40));
+	text_layer_set_background_color(s_battery_percentage_layer, GColorClear);
+	text_layer_set_text_color(s_battery_percentage_layer, GColorWhite);
+	text_layer_set_text(s_battery_percentage_layer, "Battery : 95%");
+	text_layer_set_font(s_battery_percentage_layer, s_ubuntu_date_font);
+	text_layer_set_text_alignment(s_battery_percentage_layer, GTextAlignmentCenter);
+
 	// Add it as a child layer to the Window's root layer
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_battery_percentage_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_year_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_day_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_month_date_layer));

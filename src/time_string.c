@@ -117,17 +117,28 @@ void getDayString(int day, char *buffer){
  * Charge percent should be between [10,100]
  */
 void getBatteryString(int charge_percent, char *buffer){
+	char *batteryString = "Battery : ";
+	char percentString[5];
+
+	//Calculation of percentString:
 	if(charge_percent == 100){
-		buffer[0] = 1 + '0';
-		buffer[1] = 0 + '0';
-		buffer[2] = 0 + '0';
-		buffer[3] = 0;
-		return;
+		percentString[0] = 1 + '0';
+		percentString[1] = 0 + '0';
+		percentString[2] = 0 + '0';
+		percentString[3] = 0;
+	}else{
+		int firstDigit = charge_percent/10;
+		int secondDigit = charge_percent - firstDigit*10;
+		percentString[0] = firstDigit + '0';
+		percentString[1] = secondDigit + '0';
+		percentString[2] = 0;
 	}
 
-	int firstDigit = charge_percent/10;
-	int secondDigit = charge_percent - firstDigit*10;
-	buffer[0] = firstDigit + '0';
-	buffer[1] = secondDigit + '0';
-	buffer[2] = 0;
+	//Concatenation:
+	strcpy(buffer, batteryString);
+	int batteryStringLength = strlen(batteryString);
+	strcpy(&buffer[batteryStringLength], percentString);
+	int bufferLength = strlen(buffer);
+	buffer[bufferLength] = '%';
+	buffer[bufferLength + 1] = 0;
 }

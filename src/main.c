@@ -29,6 +29,7 @@ static void deinit(void);
 
 //Non static functions:
 void getMonthDateString(int month, int date, char *buffer);
+void getYearString(int year, char *buffer);
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	update_time();
@@ -61,9 +62,11 @@ static void update_time(){
 
 	//Convert month, date, year, and day into strings:
 	getMonthDateString(month, date, monthDateBuffer);
+	getYearString(year, yearBuffer);
 
 	//Display these: (These calls should only be made once, but w/e):
 	text_layer_set_text(s_month_date_layer, monthDateBuffer);
+	text_layer_set_text(s_year_layer, yearBuffer);
 
 	// Display this time on the TextLayer
 	text_layer_set_text(s_time_layer, buffer);
@@ -99,28 +102,28 @@ static void main_window_load(Window *window) {
 	s_month_date_layer = text_layer_create(GRect(0, 53, 144, 40));
 	text_layer_set_background_color(s_month_date_layer, GColorClear);
 	text_layer_set_text_color(s_month_date_layer, GColorWhite);
-	text_layer_set_text(s_month_date_layer, "September 21");
+	text_layer_set_text(s_month_date_layer, "Nomonth 00");
 	text_layer_set_font(s_month_date_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_month_date_layer, GTextAlignmentCenter);
 
 	s_day_layer = text_layer_create(GRect(0, 101, 144, 40));
 	text_layer_set_background_color(s_day_layer, GColorClear);
 	text_layer_set_text_color(s_day_layer, GColorWhite);
-	text_layer_set_text(s_day_layer, "Wednesday");
+	text_layer_set_text(s_day_layer, "Noday");
 	text_layer_set_font(s_day_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_day_layer, GTextAlignmentCenter);
 
 	s_year_layer = text_layer_create(GRect(0, 78, 144, 40));
 	text_layer_set_background_color(s_year_layer, GColorClear);
 	text_layer_set_text_color(s_year_layer, GColorWhite);
-	text_layer_set_text(s_year_layer, "2015");
+	text_layer_set_text(s_year_layer, "8952");
 	text_layer_set_font(s_year_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_year_layer, GTextAlignmentCenter);
 
 	s_battery_percentage_layer = text_layer_create(GRect(0, 130, 144, 40));
 	text_layer_set_background_color(s_battery_percentage_layer, GColorClear);
 	text_layer_set_text_color(s_battery_percentage_layer, GColorWhite);
-	text_layer_set_text(s_battery_percentage_layer, "Battery : 95%");
+	text_layer_set_text(s_battery_percentage_layer, "Battery : 125%");
 	text_layer_set_font(s_battery_percentage_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_battery_percentage_layer, GTextAlignmentCenter);
 

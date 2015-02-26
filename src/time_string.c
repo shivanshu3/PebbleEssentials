@@ -58,3 +58,22 @@ void getMonthDateString(int month, int date, char *buffer){
 	buffer[monthLength] = ' ';
 	getDateString(date, &buffer[monthLength+1]);
 }
+
+/**
+ * Give the year from [0, Infinity) where it is the number
+ * of years after 1900.
+ * Also give a big enough buffer.
+ */
+void getYearString(int year, char *buffer){
+	year += 1900;
+	int firstDigit = year/1000;
+	int secondDigit = (year - firstDigit*1000)/100;
+	int thirdDigit = (year - firstDigit*1000 - secondDigit*100)/10;
+	int fourthDigit = year % 10;
+
+	buffer[0] = firstDigit + '0';
+	buffer[1] = secondDigit + '0';
+	buffer[2] = thirdDigit + '0';
+	buffer[3] = fourthDigit + '0';
+	buffer[4] = 0;
+}

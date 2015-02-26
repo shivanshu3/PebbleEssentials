@@ -15,12 +15,12 @@
 		"media": [
 			{
 				"type" : "font",
-				"name" : "UBUNTU_FONT_67",
+				"name" : "UBUNTU_FONT_66",
 				"file" : "Ubuntu-C.ttf"
 			},
 			{
 				"type" : "font",
-				"name" : "UBUNTU_FONT_13",
+				"name" : "UBUNTU_FONT_15",
 				"file" : "Ubuntu-C.ttf"
 			},
 			{

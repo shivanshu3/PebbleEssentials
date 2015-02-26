@@ -53,27 +53,27 @@ static void main_window_load(Window *window) {
 	s_ubuntu_really_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_13));
 
 	// Create time TextLayer
-	s_time_layer = text_layer_create(GRect(0, -12, 133, 70));
+	s_time_layer = text_layer_create(GRect(0, -17, 133, 70));
 	text_layer_set_background_color(s_time_layer, GColorBlack);
 	text_layer_set_text_color(s_time_layer, GColorWhite);
 	text_layer_set_text(s_time_layer, "88:88");
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
-	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 27, 14, 22));
+	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 24, 14, 22));
 	text_layer_set_background_color(am_pm_m_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
 	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
 
 	//Create the 'A/P' layer in AM/PM:
-	am_pm_layer = text_layer_create(GRect(133, 9, 14, 20));
+	am_pm_layer = text_layer_create(GRect(133, 6, 14, 20));
 	text_layer_set_background_color(am_pm_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_layer, GColorWhite);
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
 	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
 
-	s_month_date_layer = text_layer_create(GRect(0, 80, 133, 20));
+	s_month_date_layer = text_layer_create(GRect(0, 78, 133, 20));
 	text_layer_set_background_color(s_month_date_layer, GColorBlack);
 	text_layer_set_text_color(s_month_date_layer, GColorWhite);
 	text_layer_set_text(s_month_date_layer, "September 21");

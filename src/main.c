@@ -48,25 +48,25 @@ static void update_time(){
 
 static void main_window_load(Window *window) {
 	// Create GFont
-	s_ubuntu_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_53));
+	s_ubuntu_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_67));
 	s_ubuntu_really_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_13));
 
 	// Create time TextLayer
-	s_time_layer = text_layer_create(GRect(0, -12, 133, 55));
+	s_time_layer = text_layer_create(GRect(0, -12, 133, 70));
 	text_layer_set_background_color(s_time_layer, GColorBlack);
 	text_layer_set_text_color(s_time_layer, GColorWhite);
 	text_layer_set_text(s_time_layer, "88:88");
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
-	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 22, 14, 14));
+	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 27, 14, 22));
 	text_layer_set_background_color(am_pm_m_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
 	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
 
 	//Create the 'A/P' layer in AM/PM:
-	am_pm_layer = text_layer_create(GRect(133, 7, 14, 14));
+	am_pm_layer = text_layer_create(GRect(133, 9, 14, 20));
 	text_layer_set_background_color(am_pm_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_layer, GColorWhite);
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice

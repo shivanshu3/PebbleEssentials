@@ -8,6 +8,8 @@ static GFont s_ubuntu_font;
 static GFont s_ubuntu_really_small_font;
 static GFont s_ubuntu_date_font;
 static TextLayer *s_month_date_layer;
+static TextLayer *s_day_layer;
+static TextLayer *s_year_layer;
 
 //Functions:
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed);
@@ -56,33 +58,49 @@ static void main_window_load(Window *window) {
 
 	// Create time TextLayer
 	s_time_layer = text_layer_create(GRect(0, -17, 133, 70));
-	text_layer_set_background_color(s_time_layer, GColorBlack);
+	text_layer_set_background_color(s_time_layer, GColorClear);
 	text_layer_set_text_color(s_time_layer, GColorWhite);
 	text_layer_set_text(s_time_layer, "88:88");
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
 	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 28, 14, 22));
-	text_layer_set_background_color(am_pm_m_layer, GColorBlack);
+	text_layer_set_background_color(am_pm_m_layer, GColorClear);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
 	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
 
 	//Create the 'A/P' layer in AM/PM:
 	am_pm_layer = text_layer_create(GRect(133, 10, 14, 20));
-	text_layer_set_background_color(am_pm_layer, GColorBlack);
+	text_layer_set_background_color(am_pm_layer, GColorClear);
 	text_layer_set_text_color(am_pm_layer, GColorWhite);
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
 	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
 
-	s_month_date_layer = text_layer_create(GRect(0, 50, 144, 40));
-	text_layer_set_background_color(s_month_date_layer, GColorBlack);
+	s_month_date_layer = text_layer_create(GRect(0, 55, 144, 40));
+	text_layer_set_background_color(s_month_date_layer, GColorClear);
 	text_layer_set_text_color(s_month_date_layer, GColorWhite);
 	text_layer_set_text(s_month_date_layer, "September 21");
 	text_layer_set_font(s_month_date_layer, s_ubuntu_date_font);
 	text_layer_set_text_alignment(s_month_date_layer, GTextAlignmentCenter);
 
+	s_day_layer = text_layer_create(GRect(0, 80, 144, 40));
+	text_layer_set_background_color(s_day_layer, GColorClear);
+	text_layer_set_text_color(s_day_layer, GColorWhite);
+	text_layer_set_text(s_day_layer, "Wednesday");
+	text_layer_set_font(s_day_layer, s_ubuntu_date_font);
+	text_layer_set_text_alignment(s_day_layer, GTextAlignmentCenter);
+
+	s_year_layer = text_layer_create(GRect(0, 107, 144, 40));
+	text_layer_set_background_color(s_year_layer, GColorClear);
+	text_layer_set_text_color(s_year_layer, GColorWhite);
+	text_layer_set_text(s_year_layer, "2015");
+	text_layer_set_font(s_year_layer, s_ubuntu_date_font);
+	text_layer_set_text_alignment(s_year_layer, GTextAlignmentCenter);
+
 	// Add it as a child layer to the Window's root layer
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_year_layer));
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_day_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_month_date_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_m_layer));
@@ -100,7 +118,7 @@ static void main_window_unload(Window *window) {
 static void init() {
 	// Create main Window element and assign to pointer
 	s_main_window = window_create();
-	//window_set_background_color(s_main_window, GColorBlack);
+	window_set_background_color(s_main_window, GColorBlack);
 
 	// Set handlers to manage the elements inside the Window
 	window_set_window_handlers(s_main_window, (WindowHandlers) {

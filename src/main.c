@@ -25,16 +25,15 @@ static void main_window_load(Window *);
 static void main_window_unload(Window *);
 static void init(void);
 static void deinit(void);
-int main(void);
+
+//Non static functions:
+void getMonthDateString(int month, int date, char *buffer);
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
-	APP_LOG(APP_LOG_LEVEL_INFO, "Timer Fired");
 	update_time();
 }
 
 static void update_time(){
-	APP_LOG(APP_LOG_LEVEL_INFO, "Updating Time");
-	
 	// Get a tm structure
 	time_t temp = time(NULL); 
 	struct tm *tick_time = localtime(&temp);
@@ -52,6 +51,18 @@ static void update_time(){
 	else{//PM
 		text_layer_set_text(am_pm_layer, "P");
 	}
+
+	//Get month, date, year, and day:
+	int month = tick_time->tm_mon;
+	int date = tick_time->tm_mday;
+	int year = tick_time->tm_year;
+	int day = tick_time->tm_wday;
+
+	//Convert month, date, year, and day into strings:
+	getMonthDateString(month, date, monthDateBuffer);
+
+	//Display these: (These calls should only be made once, but w/e):
+	text_layer_set_text(s_month_date_layer, monthDateBuffer);
 
 	// Display this time on the TextLayer
 	text_layer_set_text(s_time_layer, buffer);

@@ -82,7 +82,6 @@ void getYearString(int year, char *buffer){
  * Give the day from [0-6] Where 0 is Sunday
  */
 void getDayString(int day, char *buffer){
-	APP_LOG(APP_LOG_LEVEL_INFO, "%d", day);
 	char *dayString;
 	switch(day){
 		case 0:

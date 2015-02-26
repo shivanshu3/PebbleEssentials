@@ -21,6 +21,7 @@ static char *batteryBuffer;
 
 //Functions:
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed);
+static void battery_handler(BatteryChargeState charge_state);
 static void update_time(void);
 static void main_window_load(Window *);
 static void main_window_unload(Window *);
@@ -34,6 +35,10 @@ void getDayString(int day, char *buffer);
 
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 	update_time();
+}
+
+static void battery_handler(BatteryChargeState charge_state){
+	APP_LOG(APP_LOG_LEVEL_INFO, "BATT: %d", charge_state.charge_percent);
 }
 
 static void update_time(){
@@ -181,8 +186,14 @@ static void init() {
 	// Register with TickTimerService
 	tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 
+	//Register with the battery state service:
+	battery_state_service_subscribe(battery_handler);
+
 	//Initially update time:
 	update_time();
+
+	//Initially update battery percentage:
+	battery_handler(battery_state_service_peek());
 }
 
 static void deinit() {

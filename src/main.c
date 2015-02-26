@@ -6,6 +6,7 @@ static TextLayer *s_time_layer;
 static TextLayer *am_pm_layer;
 static GFont s_ubuntu_font;
 static GFont s_ubuntu_really_small_font;
+static GFont s_ubuntu_date_font;
 static TextLayer *s_month_date_layer;
 
 //Functions:
@@ -51,6 +52,7 @@ static void main_window_load(Window *window) {
 	// Create GFont
 	s_ubuntu_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_67));
 	s_ubuntu_really_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_13));
+	s_ubuntu_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_UBUNTU_FONT_25));
 
 	// Create time TextLayer
 	s_time_layer = text_layer_create(GRect(0, -17, 133, 70));
@@ -60,30 +62,31 @@ static void main_window_load(Window *window) {
 	text_layer_set_font(s_time_layer, s_ubuntu_font);
 
 	//Create the 'M' layer in AM/PM:
-	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 24, 14, 22));
+	TextLayer *am_pm_m_layer = text_layer_create(GRect(133, 28, 14, 22));
 	text_layer_set_background_color(am_pm_m_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_m_layer, GColorWhite);
 	text_layer_set_text(am_pm_m_layer, "M");
 	text_layer_set_font(am_pm_m_layer, s_ubuntu_really_small_font);
 
 	//Create the 'A/P' layer in AM/PM:
-	am_pm_layer = text_layer_create(GRect(133, 6, 14, 20));
+	am_pm_layer = text_layer_create(GRect(133, 10, 14, 20));
 	text_layer_set_background_color(am_pm_layer, GColorBlack);
 	text_layer_set_text_color(am_pm_layer, GColorWhite);
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
 	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
 
-	s_month_date_layer = text_layer_create(GRect(0, 78, 133, 20));
+	s_month_date_layer = text_layer_create(GRect(0, 50, 144, 40));
 	text_layer_set_background_color(s_month_date_layer, GColorBlack);
 	text_layer_set_text_color(s_month_date_layer, GColorWhite);
 	text_layer_set_text(s_month_date_layer, "September 21");
-	text_layer_set_font(s_month_date_layer, s_ubuntu_really_small_font);
+	text_layer_set_font(s_month_date_layer, s_ubuntu_date_font);
+	text_layer_set_text_alignment(s_month_date_layer, GTextAlignmentCenter);
 
 	// Add it as a child layer to the Window's root layer
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_month_date_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_m_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_layer));
-	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_month_date_layer));
 }
 
 static void main_window_unload(Window *window) {

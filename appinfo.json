@@ -22,6 +22,11 @@
 				"type" : "font",
 				"name" : "UBUNTU_FONT_13",
 				"file" : "Ubuntu-C.ttf"
+			},
+			{
+				"type" : "font",
+				"name" : "UBUNTU_FONT_25",
+				"file" : "Ubuntu-C.ttf"
 			}
 		]
 	}

@@ -6,6 +6,7 @@ static TextLayer *s_time_layer;
 static TextLayer *am_pm_layer;
 static GFont s_ubuntu_font;
 static GFont s_ubuntu_really_small_font;
+static TextLayer *s_month_date_layer;
 
 //Functions:
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed);
@@ -72,10 +73,17 @@ static void main_window_load(Window *window) {
 	text_layer_set_text(am_pm_layer, "Z");//Z is an arbitrary choice
 	text_layer_set_font(am_pm_layer, s_ubuntu_really_small_font);
 
+	s_month_date_layer = text_layer_create(GRect(0, 80, 133, 20));
+	text_layer_set_background_color(s_month_date_layer, GColorBlack);
+	text_layer_set_text_color(s_month_date_layer, GColorWhite);
+	text_layer_set_text(s_month_date_layer, "September 21");
+	text_layer_set_font(s_month_date_layer, s_ubuntu_really_small_font);
+
 	// Add it as a child layer to the Window's root layer
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_m_layer));
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(am_pm_layer));
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_month_date_layer));
 }
 
 static void main_window_unload(Window *window) {
@@ -89,6 +97,7 @@ static void main_window_unload(Window *window) {
 static void init() {
 	// Create main Window element and assign to pointer
 	s_main_window = window_create();
+	//window_set_background_color(s_main_window, GColorBlack);
 
 	// Set handlers to manage the elements inside the Window
 	window_set_window_handlers(s_main_window, (WindowHandlers) {

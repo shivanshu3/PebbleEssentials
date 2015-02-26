@@ -31,14 +31,8 @@ static void update_time(){
 	// Create a long-lived buffer
 	static char buffer[] = "00:00";
 
-	// Write the current hours and minutes into the buffer
-	if(clock_is_24h_style() == true) {
-    // Use 24 hour format
-		strftime(buffer, sizeof("00:00"), "%H:%M", tick_time);
-	} else {
-    // Use 12 hour format
-		strftime(buffer, sizeof("00:00"), "%I:%M", tick_time);
-	}
+	// Write the current hours and minutes into the buffer (Always 12 hour format):
+	strftime(buffer, sizeof("00:00"), "%I:%M", tick_time);
 
 	//AM or PM?
 	if(tick_time->tm_hour < 12){//AM
@@ -95,7 +89,6 @@ static void main_window_unload(Window *window) {
 static void init() {
 	// Create main Window element and assign to pointer
 	s_main_window = window_create();
-	window_set_background_color(s_main_window, GColorBlack);
 
 	// Set handlers to manage the elements inside the Window
 	window_set_window_handlers(s_main_window, (WindowHandlers) {
@@ -121,4 +114,5 @@ int main(void) {
 	init();
 	app_event_loop();
 	deinit();
+	return 0;
 }

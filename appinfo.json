@@ -1,33 +1,38 @@
 {
-	"uuid": "54d1e70b-2ec1-48cd-b126-e731f5206467",
-	"shortName": "Essentials",
-	"longName": "Essentials",
-	"companyName": "Shivanshu Goyal",
-	"versionCode": 1,
-	"versionLabel": "1.0",
-	"watchapp": {
-		"watchface": true
-	},
-	"appKeys": {
-		"dummy": 0
-	},
-	"resources": {
-		"media": [
-			{
-				"type" : "font",
-				"name" : "UBUNTU_FONT_66",
-				"file" : "Ubuntu-C.ttf"
-			},
-			{
-				"type" : "font",
-				"name" : "UBUNTU_FONT_15",
-				"file" : "Ubuntu-C.ttf"
-			},
-			{
-				"type" : "font",
-				"name" : "UBUNTU_FONT_25",
-				"file" : "Ubuntu-C.ttf"
-			}
-		]
-	}
+  "uuid": "54d1e70b-2ec1-48cd-b126-e731f5206467",
+  "shortName": "Essentials",
+  "longName": "Essentials",
+  "companyName": "Shivanshu Goyal",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": true
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": [
+      {
+        "type": "font",
+        "name": "UBUNTU_FONT_66",
+        "file": "Ubuntu-C.ttf"
+      },
+      {
+        "type": "font",
+        "name": "UBUNTU_FONT_15",
+        "file": "Ubuntu-C.ttf"
+      },
+      {
+        "type": "font",
+        "name": "UBUNTU_FONT_25",
+        "file": "Ubuntu-C.ttf"
+      }
+    ]
+  },
+  "targetPlatforms": [
+    "aplite",
+    "basalt"
+  ],
+  "sdkVersion": "3"
 }
